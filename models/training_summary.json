@@ -1,0 +1,61 @@
+{
+  "trained_at": "2026-05-24T15:44:51",
+  "model_file": "C:\\laragon\\www\\detector-vial\\models\\road_damage_model.joblib",
+  "image_size": 128,
+  "feature_extractor": "HOG",
+  "classifier": "SVC (RBF)",
+  "accuracy": 0.875,
+  "class_names": [
+    "bache",
+    "fisura"
+  ],
+  "source_counts": {
+    "bache": 10,
+    "fisura": 11
+  },
+  "augmented_distribution": {
+    "bache": 60,
+    "fisura": 66
+  },
+  "confusion_matrix": [
+    [
+      14,
+      1
+    ],
+    [
+      3,
+      14
+    ]
+  ],
+  "classification_report": {
+    "bache": {
+      "precision": 0.8235294117647058,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.875,
+      "support": 15.0
+    },
+    "fisura": {
+      "precision": 0.9333333333333333,
+      "recall": 0.8235294117647058,
+      "f1-score": 0.875,
+      "support": 17.0
+    },
+    "accuracy": 0.875,
+    "macro avg": {
+      "precision": 0.8784313725490196,
+      "recall": 0.8784313725490196,
+      "f1-score": 0.875,
+      "support": 32.0
+    },
+    "weighted avg": {
+      "precision": 0.8818627450980392,
+      "recall": 0.875,
+      "f1-score": 0.875,
+      "support": 32.0
+    }
+  },
+  "dataset_counts_live": {
+    "bache": 10,
+    "fisura": 11
+  }
+}

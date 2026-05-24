@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector Vial ML · Predicción</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="brand">Detector Vial ML</div>
+      <div class="menu">
+        <a class="active" href="index.html">Predicción</a>
+        <a href="train.html">Entrenamiento</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Clasificador local en Laragon + API Python</span>
+        <h1 class="title">Reconoce baches y fisuras de carreteras con una interfaz profesional</h1>
+        <p class="subtitle">Sube una fotografía, visualiza el resultado del modelo y obtén la probabilidad por clase. La API trabaja en <strong>localhost:8000</strong> y el frontend puede abrirse directamente desde Laragon.</p>
+        <div class="grid-3">
+          <div class="metric"><h3>Imágenes bache</h3><strong id="statBache">0</strong></div>
+          <div class="metric"><h3>Imágenes fisura</h3><strong id="statFisura">0</strong></div>
+          <div class="metric"><h3>Modelo listo</h3><strong id="statModel">No</strong></div>
+        </div>
+        <div style="margin-top:18px" id="apiStatus"><span class="status-dot"></span>Comprobando API...</div>
+      </div>
+
+      <div class="card">
+        <img id="preview" class="preview" src="https://placehold.co/900x520/0f172a/e2e8f0?text=Vista+previa+de+la+imagen" alt="Vista previa">
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h2>Subida de imagen</h2>
+        <p class="subtitle">Arrastra la imagen o selecciónala manualmente para clasificarla.</p>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*">
+          <strong>Haz clic o arrastra una imagen aquí</strong>
+          <p class="subtitle">Formatos recomendados: JPG, JPEG, PNG, WEBP</p>
+        </label>
+        <div class="btn-row">
+          <button class="primary" id="analyzeBtn">Analizar imagen</button>
+          <button class="ghost" id="clearBtn">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Resultado del análisis</h2>
+        <div class="result-pill" id="resultLabel">Sin análisis</div>
+        <p class="subtitle" id="confidence" style="margin-top:16px">Carga una imagen y pulsa Analizar</p>
+        <ul class="score-list" id="scoreList"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">Proyecto listo para localhost con estructura frontend + backend + API.</div>
+  <script src="assets/app.js"></script>
+</body>
+</html>

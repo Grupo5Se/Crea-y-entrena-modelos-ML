@@ -1,0 +1,126 @@
+DETECTOR VIAL ML - INSTALACIÓN Y USO EN LARAGON
+================================================
+
+1) REQUISITOS
+- Laragon instalado y en ejecución.
+- Python 3.10 o superior agregado al PATH de Windows.
+- Navegador web.
+
+2) COPIAR PROYECTO A LARAGON
+- Copia la carpeta detector-vial dentro de:
+  C:\laragon\www\detector-vial
+
+3) CREAR Y ACTIVAR EL ENTORNO PYTHON
+Abre una terminal en:
+  C:\laragon\www\detector-vial\backend
+
+Comandos:
+  python -m venv .venv
+  .venv\Scripts\activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+
+4) CONFIGURAR VARIABLES .ENV
+- Ya se incluye un archivo .env listo.
+- Si quieres personalizar rutas, edita:
+  C:\laragon\www\detector-vial\backend\.env
+
+Variables principales:
+  RAW_DATASET_DIR=../data/raw
+  UPLOAD_TRAIN_DIR=../data/uploads/training
+  UPLOAD_PREDICT_DIR=../data/uploads/predictions
+  MODEL_OUTPUT_DIR=../models
+  LOG_DIR=../logs
+
+5) ENTRENAR EL MODELO POR PRIMERA VEZ
+En la misma terminal, desde la carpeta backend:
+  .venv\Scripts\activate
+  cd ..
+  python -m backend.scripts.train_model
+
+Al terminar se generarán archivos en:
+  C:\laragon\www\detector-vial\models
+
+6) INICIAR LA API EN LOCALHOST
+Desde:
+  C:\laragon\www\detector-vial\backend
+
+Comandos:
+  .venv\Scripts\activate
+  uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+La API quedará en:
+  http://127.0.0.1:8000
+
+7) ABRIR LAS 2 INTERFACES EN LARAGON
+Con Apache iniciado en Laragon, abre:
+
+Interfaz 1 - Predicción:
+  http://localhost/detector-vial/frontend/
+
+Interfaz 2 - Entrenamiento:
+  http://localhost/detector-vial/frontend/train.html
+
+8) CÓMO SUBIR TUS FOTOS PARA ENTRENAR
+OPCIÓN A - DESDE LA INTERFAZ WEB
+- Entra a la interfaz de entrenamiento.
+- Selecciona la clase: bache o fisura.
+- Sube una o varias imágenes.
+- Pulsa "Subir al dataset".
+- Después pulsa "Entrenar modelo".
+
+OPCIÓN B - MANUALMENTE EN CARPETAS
+Copia tus imágenes a:
+  C:\laragon\www\detector-vial\data\raw\bache
+  C:\laragon\www\detector-vial\data\raw\fisura
+
+Luego ejecuta:
+  cd C:\laragon\www\detector-vial
+  backend\.venv\Scripts\activate
+  python -m backend.scripts.train_model
+
+9) CÓMO PROBAR UNA IMAGEN
+- Abre la interfaz de predicción.
+- Sube la imagen.
+- Pulsa "Analizar imagen".
+- Verás la clase predicha y el porcentaje de confianza.
+
+10) COMANDOS RÁPIDOS
+Instalar dependencias:
+  cd C:\laragon\www\detector-vial\backend
+  python -m venv .venv
+  .venv\Scripts\activate
+  pip install -r requirements.txt
+
+Entrenar manualmente:
+  cd C:\laragon\www\detector-vial
+  backend\.venv\Scripts\activate
+  python -m backend.scripts.train_model
+
+Levantar backend:
+  cd C:\laragon\www\detector-vial\backend
+  .venv\Scripts\activate
+  uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+11) ESTRUCTURA DEL PROYECTO
+- frontend/               -> interfaces web
+- backend/app/            -> API FastAPI
+- backend/scripts/        -> entrenamiento y preparación
+- data/raw/               -> dataset por clases
+- data/uploads/           -> imágenes subidas por el usuario
+- models/                 -> modelo entrenado y métricas
+- logs/                   -> logs del entrenamiento
+
+12) NOTAS IMPORTANTES
+- El dataset inicial es pequeño, por eso conviene agregar más fotos reales.
+- El modelo actual usa HOG + SVM, que es ligero y funciona bien en CPU local.
+- Si deseas más precisión, más adelante se puede migrar a CNN o YOLO.
+- Si Apache de Laragon usa otro puerto, reemplaza localhost por el puerto correcto.
+
+13) SOLUCIÓN DE ERRORES COMUNES
+- Si el navegador dice que la API no responde:
+  revisa que uvicorn siga abierto en la terminal.
+- Si falla la subida de imágenes:
+  confirma que la API esté en http://127.0.0.1:8000
+- Si no hay modelo entrenado:
+  ejecuta otra vez: python -m backend.scripts.train_model

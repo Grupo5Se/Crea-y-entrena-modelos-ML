@@ -1,0 +1,11 @@
+=== ENTRENAMIENTO DETECTOR VIAL ===
+Fecha: 2026-05-24T15:44:49
+Ruta dataset: C:\laragon\www\detector-vial\data\raw
+Total muestras con aumento: 126
+Distribución: {np.str_('bache'): 60, np.str_('fisura'): 66}
+Entrenando modelo SVM con HOG...
+Accuracy: 0.8750
+Clases: [np.str_('bache'), np.str_('fisura')]
+Modelo guardado en: C:\laragon\www\detector-vial\models\road_damage_model.joblib
+Resumen guardado en: C:\laragon\www\detector-vial\models\training_summary.json
+=== ENTRENAMIENTO FINALIZADO ===

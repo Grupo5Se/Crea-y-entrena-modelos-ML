@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector Vial ML · Entrenamiento</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="brand">Detector Vial ML</div>
+      <div class="menu">
+        <a href="index.html">Predicción</a>
+        <a class="active" href="train.html">Entrenamiento</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Panel de dataset y reentrenamiento</span>
+        <h1 class="title">Administra tus imágenes y lanza nuevos entrenamientos desde el navegador</h1>
+        <p class="subtitle">Sube nuevas fotos etiquetadas como <strong>bache</strong> o <strong>fisura</strong>, revisa las métricas y dispara el entrenamiento sin salir del entorno local.</p>
+        <div class="grid-3">
+          <div class="metric"><h3>Dataset bache</h3><strong id="datasetBache">0</strong></div>
+          <div class="metric"><h3>Dataset fisura</h3><strong id="datasetFisura">0</strong></div>
+          <div class="metric"><h3>Accuracy</h3><strong id="accuracyText">Sin entrenamiento</strong></div>
+        </div>
+        <div style="margin-top:18px" id="trainState"><span class="status-dot"></span>Consultando estado del entrenamiento...</div>
+      </div>
+
+      <div class="card">
+        <h2>Estado del modelo</h2>
+        <p class="subtitle">Indica si ya existe un modelo entrenado listo para predicción.</p>
+        <div class="result-pill">Modelo listo: <span id="modelReady">No</span></div>
+        <div class="btn-row">
+          <button class="secondary" id="trainBtn">Entrenar modelo</button>
+          <button class="ghost" id="refreshBtn">Actualizar panel</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h2>Cargar nuevas imágenes al dataset</h2>
+        <p class="subtitle">Selecciona la clase y sube una o varias fotografías para ampliar el entrenamiento.</p>
+        <label>Clase</label>
+        <select id="labelSelect">
+          <option value="bache">bache</option>
+          <option value="fisura">fisura</option>
+        </select>
+        <div style="height:14px"></div>
+        <label>Imágenes</label>
+        <input type="file" id="trainFiles" accept="image/*" multiple>
+        <div class="btn-row">
+          <button class="primary" id="uploadBtn">Subir al dataset</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Logs del entrenamiento</h2>
+        <p class="subtitle">Monitorea el proceso y confirma cuándo terminó el entrenamiento.</p>
+        <textarea id="logsBox" class="textarea-log" readonly>Aún no hay logs.</textarea>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">Cuando el entrenamiento termine, vuelve a la vista de predicción para probar nuevas imágenes.</div>
+  <script src="assets/train.js"></script>
+</body>
+</html>
